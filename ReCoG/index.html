@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReCoG: Relational Concept Graph for Training-Free Personalization</title>
+  <meta name="description" content="ReCoG: Relational Concept Graph for Training-Free Personalization (NeurIPS 2026).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="venue">
+      <img src="assets/neurips-logo.svg" alt="NeurIPS"> <span class="flag">🇦🇺</span> NeurIPS 2026
+    </div>
+    <h1>🐦🐧 <span class="name">ReCoG</span>: Relational Concept Graph<br>for Training-Free Personalization</h1>
+
+    <p class="authors">
+      <span>Changseon Yu</span>
+      <span>Hyeokjun Kweon</span>
+    </p>
+    <p class="affil">
+      <img src="assets/fovlab-logo.png" alt=""><a href="https://fovlab.cau.ac.kr/home" target="_blank" rel="noopener">Foundational Vision Laboratory</a>,
+      <img src="assets/cau-logo.png" alt="">Chung-Ang University
+    </p>
+
+    <nav class="buttons">
+      <!-- TODO: 카메라레디 후 href 를 채우고 class="disabled" 제거 -->
+      <a class="btn disabled" aria-disabled="true">📄 Paper <small>coming soon</small></a>
+      <a class="btn disabled" aria-disabled="true">arXiv <small>coming soon</small></a>
+      <a class="btn" href="https://github.com/csy-98/ReCoG" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Code
+      </a>
+      <a class="btn disabled" aria-disabled="true">🤗 FINGER <small>coming soon</small></a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== TEASER ===================== -->
+    <section class="teaser">
+      <img src="assets/recog-overview.svg" alt="ReCoG overview: relation-agnostic vs. relation-aware personalization, and the Relational Concept Graph">
+    </section>
+
+    <!-- ===================== ABSTRACT ===================== -->
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p>
+        Training-free personalization adapts a frozen vision-language model (VLM) to recognize
+        user-defined concepts from only a few exemplars by retrieving concept entries at inference
+        time. While recent retriever-based methods enrich each concept with descriptive evidence,
+        they largely treat concepts in isolation, so the retrieved information can be plausible yet
+        non-discriminative, especially when the personalized concept set contains highly confusable,
+        fine-grained categories. We argue that personalization is inherently <strong>relational</strong>: correct
+        recognition depends on the specific distinctions between a concept and its nearest
+        alternatives. To this end, we propose <strong>ReCoG</strong>, a <strong>Re</strong>lational <strong>Co</strong>ncept <strong>G</strong>raph for
+        retrieval-augmented personalization. ReCoG represents concepts as nodes and augments them with
+        directed edges that explicitly capture discriminative cues between concept pairs, elicited by a
+        frozen VLM during database construction. At inference, ReCoG retrieves a shortlist and resolves
+        ambiguity via explicit pairwise comparisons conditioned on the corresponding relational edges,
+        selecting the concept that consistently wins against competing candidates. We also introduce
+        <strong>FINGER</strong> benchmark to test personalized recognition on confusable concept sets. Across FINGER,
+        ReCoG substantially outperforms prior methods, with the largest gains in the most confusable
+        regimes. ReCoG also achieves consistently best performance on established personalization
+        benchmarks including captioning and VQA, confirming that relational evidence is broadly
+        beneficial beyond fine-grained settings.
+      </p>
+    </section>
+
+    <!-- ===================== METHOD ===================== -->
+    <section id="method">
+      <h2>Method</h2>
+      <figure class="figure paper">
+        <img src="assets/figure2.png" alt="Figure 2 of the ReCoG paper: building the Relational Concept Graph with a frozen VLM and a discriminative prompt">
+      </figure>
+
+    </section>
+
+    <!-- ===================== DATASETS ===================== -->
+    <section id="datasets">
+      <h2>Datasets</h2>
+
+      <h3 class="sub">FINGER benchmark <span class="tag">ours</span></h3>
+      <p><strong>FINGER</strong> (<strong>FIN</strong>e-<strong>G</strong>rained p<strong>ER</strong>sonalization) targets concept sets with high visual confusability.</p>
+      <div class="cards">
+        <!-- TODO: Hugging Face 주소가 생기면 각 카드의 .hf 를 <a class="hf" href="..."> 로 바꾸세요 -->
+        <article class="card">
+          <h4>CUB-Easy</h4>
+          <p>20 species sampled at random from CUB-200-2011</p>
+          <dl><div><dt>Concepts</dt><dd>20</dd></div><div><dt>Images</dt><dd>1 support + 19 queries per concept (400)</dd></div></dl>
+          <span class="hf">🤗 Coming soon</span>
+        </article>
+        <article class="card">
+          <h4>CUB-Hard</h4>
+          <p>20 visually similar species selected with CUB attributes (predominantly black birds)</p>
+          <dl><div><dt>Concepts</dt><dd>20</dd></div><div><dt>Images</dt><dd>1 support + 19 queries per concept (400)</dd></div></dl>
+          <span class="hf">🤗 Coming soon</span>
+        </article>
+        <article class="card">
+          <h4>CLEVR</h4>
+          <p>Each concept is a scene configuration; queries are rendered from different viewpoints</p>
+          <dl><div><dt>Concepts</dt><dd>20</dd></div><div><dt>Images</dt><dd>1 support + 9 queries per concept (200)</dd></div></dl>
+          <span class="hf">🤗 Coming soon</span>
+        </article>
+      </div>
+      <p class="note">🤗 FINGER will be released on Hugging Face.</p>
+
+      <h3 class="sub">Established benchmarks</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="l">Benchmark</th><th>Concepts</th><th class="l">Paper</th></tr></thead>
+          <tbody>
+            <tr><td class="l">MyVLM</td><td>29</td><td class="l"><a href="https://arxiv.org/abs/2403.14599" target="_blank" rel="noopener">MyVLM: Personalizing VLMs for User-Specific Queries</a> (ECCV 2024)</td></tr>
+            <tr><td class="l">Yo'LLaVA</td><td>40</td><td class="l"><a href="https://arxiv.org/abs/2406.09400" target="_blank" rel="noopener">Yo'LLaVA: Your Personalized Language and Vision Assistant</a> (NeurIPS 2024)</td></tr>
+            <tr><td class="l">PerVA</td><td>329</td><td class="l"><a href="https://arxiv.org/abs/2503.18623" target="_blank" rel="noopener">Training-Free Personalization via Retrieval and Reasoning on Fingerprints</a> (ICCV 2025)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section id="results">
+      <h2>Results</h2>
+
+      <h3 class="sub">FINGER benchmark</h3>
+      <figure class="figure paper"><img src="assets/table1.png" alt="Table 1 of the ReCoG paper: recognition and captioning performance on the FINGER benchmark"></figure>
+
+      <h3 class="sub">CLEVR difficulty</h3>
+      <figure class="figure paper narrow"><img src="assets/table2.png" alt="Table 2 of the ReCoG paper: P.Acc/N.Acc across K and hop distances on CLEVR"></figure>
+
+      <h3 class="sub">Established benchmarks</h3>
+      <figure class="figure paper"><img src="assets/table3.png" alt="Table 3 of the ReCoG paper: recognition/captioning on MyVLM, Yo'LLaVA, PerVA and VQA on Yo'LLaVA"></figure>
+
+    </section>
+
+    <!-- ===================== BIBTEX ===================== -->
+    <section id="bibtex">
+      <h2>BibTeX</h2>
+      <!-- TODO: 카메라레디 후 아래 <code></code> 안에 BibTeX 를 붙여넣으세요 -->
+      <pre class="bibtex"><code></code></pre>
+    </section>
+
+  </main>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+  <script>
+    renderMathInElement(document.body, {
+      delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\(", right: "\\)", display: false }],
+    });
+  </script>
+</body>
+</html>
