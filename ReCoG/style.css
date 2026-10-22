@@ -159,8 +159,8 @@ footer img { height: 20px; }
 
 /* paper figures and tables shown as images */
 .figure.paper img { border-radius: 10px; box-shadow: none; padding: 14px; background: #fff; }
-/* same text scale as Table 1: 864px vs 2420px source width, plus padding */
-.figure.paper.narrow { width: calc(35.7% + 28px); min-width: 260px; margin-left: auto; margin-right: auto; }
+/* same text scale as Table 1: 1121px vs 3201px source width, plus padding */
+.figure.paper.narrow { width: calc(35.0% + 28px); min-width: 260px; margin-left: auto; margin-right: auto; }
 
 /* BibTeX */
 .bibtex {
@@ -175,3 +175,6 @@ footer img { height: 20px; }
 .grids a:hover { border-color: #c9d4ee; box-shadow: 0 8px 24px -16px rgba(27, 47, 99, .45); }
 .grids img { display: block; width: 100%; }
 @media (max-width: 720px) { .grids { grid-template-columns: 1fr; } }
+
+/* inline SVG teaser (references the full-resolution Figure 1) */
+.teaser-anim { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 10px 30px -18px rgba(27, 47, 99, .35); }
