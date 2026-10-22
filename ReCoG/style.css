@@ -168,3 +168,10 @@ footer img { height: 20px; }
   background: var(--soft); border: 1px solid var(--line); border-radius: 12px;
   font-family: var(--mono); font-size: 13px; line-height: 1.6; color: var(--text);
 }
+
+/* FINGER support-image grids */
+.grids { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+.grids a { display: block; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; transition: border-color .15s, box-shadow .15s; }
+.grids a:hover { border-color: #c9d4ee; box-shadow: 0 8px 24px -16px rgba(27, 47, 99, .45); }
+.grids img { display: block; width: 100%; }
+@media (max-width: 720px) { .grids { grid-template-columns: 1fr; } }
