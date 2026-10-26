@@ -178,3 +178,7 @@ footer img { height: 20px; }
 
 /* inline SVG teaser (references the full-resolution Figure 1) */
 .teaser-anim { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 10px 30px -18px rgba(27, 47, 99, .35); }
+
+/* venue badge without logo; NeurIPS logo on the Paper button */
+.venue { padding-left: 12px; }
+.btn-logo { height: 18px; width: auto; display: block; }
