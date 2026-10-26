@@ -182,3 +182,9 @@ footer img { height: 20px; }
 /* venue badge without logo; NeurIPS logo on the Paper button */
 .venue { padding-left: 12px; }
 .btn-logo { height: 18px; width: auto; display: block; }
+
+/* larger venue badge */
+.venue { font-size: 19px; gap: 10px; padding: 8px 20px; }
+.venue .flag { font-size: 22px; }
+/* logos on dark buttons sit on a small white chip */
+.btn:not(.disabled) .btn-logo { background: #fff; border-radius: 5px; padding: 2px 3px; height: 20px; }
